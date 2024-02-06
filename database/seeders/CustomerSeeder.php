@@ -1,0 +1,39 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Customer;
+use App\Models\Invoice;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class CustomerSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Customer::truncate();
+        Invoice::truncate();
+
+        Customer::factory()
+            ->count(25)
+            ->hasInvoices(10)
+            ->create();
+
+            Customer::factory()
+            ->count(100)
+            ->hasInvoices(5)
+            ->create();    
+
+            Customer::factory()
+            ->count(100)
+            ->hasInvoices(5)
+            ->create();
+
+            Customer::factory()
+            ->count(5)
+            ->create();
+    }
+}
