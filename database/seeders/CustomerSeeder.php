@@ -14,25 +14,22 @@ class CustomerSeeder extends Seeder
      */
     public function run(): void
     {
-        Customer::truncate();
-        Invoice::truncate();
-
         Customer::factory()
             ->count(25)
             ->hasInvoices(10)
             ->create();
 
-            Customer::factory()
+        Customer::factory()
             ->count(100)
             ->hasInvoices(5)
             ->create();    
 
-            Customer::factory()
+        Customer::factory()
             ->count(100)
             ->hasInvoices(5)
             ->create();
 
-            Customer::factory()
+        Customer::factory()
             ->count(5)
             ->create();
     }
