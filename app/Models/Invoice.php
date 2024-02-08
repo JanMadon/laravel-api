@@ -10,6 +10,8 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
