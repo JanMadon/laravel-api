@@ -32,7 +32,7 @@ class StoreCustomerRequest extends FormRequest
             'postalCode' => ['required']
         ];
     }
-
+    
     protected function prepareForValidation() { // nazwa ma znaczenie
         $this->merge([
             'postal_code' => $this->postalCode
