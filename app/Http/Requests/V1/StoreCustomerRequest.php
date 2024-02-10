@@ -12,7 +12,9 @@ class StoreCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+
+        return $user != null && $user->tokenCan('create');
     }
 
     /**
@@ -24,7 +26,7 @@ class StoreCustomerRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'type' => ['required', Rule::in(['I','B','i','b'])],
+            'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
             'email' => ['required', 'email'],
             'address' => ['required'],
             'city' => ['required'],
@@ -32,11 +34,11 @@ class StoreCustomerRequest extends FormRequest
             'postalCode' => ['required']
         ];
     }
-    
-    protected function prepareForValidation() { // nazwa ma znaczenie
+
+    protected function prepareForValidation()
+    { // nazwa ma znaczenie
         $this->merge([
             'postal_code' => $this->postalCode
         ]);
-
     }
 }

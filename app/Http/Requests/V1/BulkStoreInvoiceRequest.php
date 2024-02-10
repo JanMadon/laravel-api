@@ -12,7 +12,9 @@ class BulkStoreInvoiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+
+        return $user != null && $user->tokenCan('create');
     }
 
     /**
@@ -30,11 +32,12 @@ class BulkStoreInvoiceRequest extends FormRequest
             '*.paidDated' => ['date_format:Y-m-d H:i:s', 'nullable'],
         ];
     }
-    
-    protected function prepareForValidation() { // nazwa ma znaczenie
+
+    protected function prepareForValidation()
+    { // nazwa ma znaczenie
         $data = [];
 
-        foreach($this->toArray() as $obj) {
+        foreach ($this->toArray() as $obj) {
             $obj['customer_id'] = $obj['customerId'] ?? null;
             $obj['billed_dated'] = $obj['billedDated'] ?? null;
             $obj['paid_dated'] = $obj['paidDated'] ?? null;
