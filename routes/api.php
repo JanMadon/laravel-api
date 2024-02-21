@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\V1\CustomerController;
 use App\Http\Controllers\API\V1\InvoiceController;
+use App\Http\Controllers\API\V2\TaskController;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\API\V1', 'm
 
     Route::post('invoices/bulk', ['uses' => 'InvoiceController@bulkStore']);
 });
+
+Route::apiResource('v2/tasks', TaskController::class);
