@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('title');
-            $table->string('descrpition')->nullable();
+            $table->string('description')->nullable();
             $table->string('location');
             $table->boolean('status')->default(false);
             $table->enum('priority', ['hight', 'medium', 'low']);
